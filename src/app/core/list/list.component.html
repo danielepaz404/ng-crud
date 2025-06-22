@@ -1,0 +1,11 @@
+@if(items() && items().length > 0){
+    <ul>
+        @for(item of items(); track $index){
+            <li>{{$index}} - {{item}}</li>
+        }
+    </ul>
+} @else {
+    <div>
+        <p>Empty list :(</p>
+    </div>
+}
