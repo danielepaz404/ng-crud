@@ -1,4 +1,5 @@
-import { Component, input } from "@angular/core";
+import { Component, input, signal, WritableSignal } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
 
 @Component({
     selector: 'app-header',
@@ -6,5 +7,5 @@ import { Component, input } from "@angular/core";
     styleUrl: './header.component.scss'
 })
 export class HeaderComponent {
-    title = input.required();
+    title: WritableSignal<string> = signal<string>('');
 }
