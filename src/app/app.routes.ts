@@ -1,24 +1,21 @@
 import { Routes } from '@angular/router';
 import { ListComponent } from './core/list/list.component';
 import { CreateComponent } from './core/create/create.component';
+import { App } from './app';
 
 const pageTitle = "ngCrud";
 
 export const routes: Routes = [
     {
-        path: '',
-        title: pageTitle,
-        children: [
-            {
-                path: 'list',
-                title: `${pageTitle} - List of records`,
-                component: ListComponent,
-            },
-            {
-                path: 'create',
-                title: `${pageTitle} - Create record`,
-                component: CreateComponent,
-            }
-        ]
+        path: 'list',
+        title: `${pageTitle} - List of records`,
+        data: { title: `${pageTitle} - List of records` },
+        component: ListComponent,
     },
+    {
+        path: 'create',
+        title: `${pageTitle} - Create record`,
+        data: { title: `${pageTitle} - Create record` },
+        component: CreateComponent,
+    }
 ];
