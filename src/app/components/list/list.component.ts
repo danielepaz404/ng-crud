@@ -1,4 +1,6 @@
-import { Component, input, InputSignal, Signal } from "@angular/core";
+import { Component, signal, WritableSignal } from "@angular/core";
+import { TodoService } from "../../services/todo.service";
+import { Todo } from "../../services/todo.model";
 
 @Component({
     selector: 'app-list',
@@ -6,5 +8,11 @@ import { Component, input, InputSignal, Signal } from "@angular/core";
     styleUrl: './list.component.scss'
 })
 export class ListComponent {
-    items: InputSignal<number[]> = input<number[]>([]);
+    items: WritableSignal<Todo[]> = signal<Todo[]>([]);
+
+    constructor(todoService: TodoService) {
+        todoService.getTodos().subscribe((value: Todo[]) => {
+            this.items.set(value);
+        });
+    }
 }
