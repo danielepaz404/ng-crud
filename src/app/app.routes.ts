@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
-import { ListComponent } from './core/list/list.component';
-import { CreateComponent } from './core/create/create.component';
+import { ListComponent } from './components/list/list.component';
+import { CreateComponent } from './components/create/create.component';
 import { App } from './app';
 
 const pageTitle = "ngCrud";
