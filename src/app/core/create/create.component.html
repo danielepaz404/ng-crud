@@ -1,1 +1,46 @@
 <h1>Create</h1>
+
+<h2> This is a reactive form: </h2>
+<form action="" [formGroup]="reactiveForm">
+    <label for="description">Description</label> <br>
+    <input type="text" name="description" id="description" placeholder="Add description" formControlName="description"><br>
+    @if(reactiveForm.get('description')?.invalid){
+        <span>Invalid!!!</span>
+    }
+    
+    <br> <br>
+    
+    <label for="priority">Priority</label> <br>
+    <select name="priority" id="priority" formControlName="priority">
+        <option value="" disabled>Priority</option>
+        <option value="1">Low</option>
+        <option value="2">Mid</option>
+        <option value="3">High</option>
+    </select>
+</form>
+
+<p>{{reactiveForm.get('description')?.value}}</p>
+
+<br>
+<hr>
+<br>
+
+<h2>This is a template-driven form:</h2>
+<form action="">
+    <label for="description_template">Description</label> <br>
+    <input type="text" name="description_template" id="description_template" [(ngModel)]="descriptionTemplateControl" #descriptionTemplate="ngModel" required minlength="4"><br>
+    @if(descriptionTemplate.invalid && (descriptionTemplate.dirty || descriptionTemplate.touched)){
+        <span>Invalid!!!!</span>
+    }
+    <br> <br>
+    
+    <label for="priority_template">Priority</label> <br>
+    <select name="priority_template" id="priority_template" [(ngModel)]="priorityTemplateControl">
+        <option value="" disabled>Priority</option>
+        <option value="1">Low</option>
+        <option value="2">Mid</option>
+        <option value="3">High</option>
+    </select>
+</form>
+
+<p>{{descriptionTemplateControl}}</p>
