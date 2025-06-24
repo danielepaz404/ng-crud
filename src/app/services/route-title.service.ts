@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { filter, map, mergeMap } from 'rxjs/operators';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, of } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class RouteTitleService {
@@ -12,16 +12,14 @@ export class RouteTitleService {
         this.router.events
             .pipe(
                 filter(event => event instanceof NavigationEnd),
-                map(() => this.route),
-                map(route => {
-                    console.log(route);
+                map(() => {
+                    let route = this.route;
                     while (route.firstChild) {
                         route = route.firstChild;
                     }
-                    return route;
+                    return route.snapshot.routeConfig?.title || 'Home';
                 }),
-                mergeMap(route => route.data),
-                map(data => data['title'] || 'Home')
+                filter(title => typeof title === 'string')
             )
             .subscribe(title => this.titleSubject.next(title));
     }

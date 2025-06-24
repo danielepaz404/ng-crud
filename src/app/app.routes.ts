@@ -8,13 +8,11 @@ export const routes: Routes = [
     {
         path: 'list',
         title: `${pageTitle} - List of records`,
-        data: { title: `${pageTitle} - List of records` },
         component: ListComponent,
     },
     {
         path: 'create',
         title: `${pageTitle} - Create record`,
-        data: { title: `${pageTitle} - Create record` },
         component: CreateComponent,
     }
 ];
