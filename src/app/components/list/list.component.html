@@ -1,7 +1,7 @@
 @if(items() && items().length > 0){
     <ul>
-        @for(item of items(); track item.id){
-            <li>{{item.id}} - {{item.description}} - {{item.priority}}</li>
+        @for(item of items(); track $index){
+            <li>{{$index}} - {{item.description}} - {{item.priority}} <button>Edit</button><button>Delete</button></li>
         }
     </ul>
 } @else {

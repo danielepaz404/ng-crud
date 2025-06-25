@@ -1,5 +1,5 @@
 <h2> This is a reactive form: </h2>
-<form action="" [formGroup]="reactiveForm">
+<form action="" [formGroup]="reactiveForm" (submit)="onSubmit()">
     <label for="description">Description</label> <br>
     <input type="text" name="description" id="description" placeholder="Add description" formControlName="description"><br>
     @if(reactiveForm.get('description')?.invalid){
@@ -10,11 +10,16 @@
     
     <label for="priority">Priority</label> <br>
     <select name="priority" id="priority" formControlName="priority">
-        <option value="" disabled>Priority</option>
         <option value="1">Low</option>
         <option value="2">Mid</option>
         <option value="3">High</option>
     </select>
+    <br>
+     @if(reactiveForm.get('priority')?.invalid){
+        <span>Invalid!!!</span>
+    }
+
+    <button type="submit">Create</button>
 </form>
 
 <p>{{reactiveForm.get('description')?.value}}</p>
@@ -34,7 +39,6 @@
     
     <label for="priority_template">Priority</label> <br>
     <select name="priority_template" id="priority_template" [(ngModel)]="priorityTemplateControl">
-        <option value="" disabled>Priority</option>
         <option value="1">Low</option>
         <option value="2">Mid</option>
         <option value="3">High</option>

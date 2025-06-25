@@ -1,23 +1,32 @@
-import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { catchError, Observable, tap, throwError } from "rxjs";
 import { Todo } from "./todo.model";
 
 @Injectable()
 export class TodoService {
     apiUrl = 'api/todos';
+    lastCapturedData : Todo[] = [];
 
-    constructor(private http: HttpClient) { }
+    constructor() {
+        const currentData = localStorage.getItem('mockTodoData');
 
-    getTodos(): Observable<Todo[]> {
-        return this.http.get<Todo[]>(this.apiUrl).pipe(
-            tap(data => console.log(data)),
-            catchError(this.handleError)
-        );
+        if(!currentData){
+            localStorage.setItem('mockTodoData', JSON.stringify([]))
+        }
     }
 
-    private handleError(error: any) {
-        console.error(error);
-        return throwError(() => new Error(error));
+    getTodos(): Todo[] {
+        const currentStoredData = localStorage.getItem('mockTodoData');
+
+        if(currentStoredData){
+            return JSON.parse(currentStoredData);
+        }
+
+        return [];
+    }
+
+    addTodo(todo: Todo){
+        const currentData = this.getTodos();
+        currentData.push(todo);
+        localStorage.setItem('mockTodoData', JSON.stringify(currentData))   
     }
 }

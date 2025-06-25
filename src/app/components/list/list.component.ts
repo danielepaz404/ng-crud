@@ -11,8 +11,7 @@ export class ListComponent {
     items: WritableSignal<Todo[]> = signal<Todo[]>([]);
 
     constructor(todoService: TodoService) {
-        todoService.getTodos().subscribe((value: Todo[]) => {
-            this.items.set(value);
-        });
+        this.items.set(todoService.getTodos());
+        
     }
 }
