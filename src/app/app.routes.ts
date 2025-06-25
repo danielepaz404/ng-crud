@@ -14,5 +14,10 @@ export const routes: Routes = [
         path: 'create',
         title: `${pageTitle} - Create record`,
         component: CreateComponent,
+    },
+    {
+        path: 'edit/:id',
+        title: `${pageTitle} - Edit record`,
+        component: CreateComponent
     }
 ];

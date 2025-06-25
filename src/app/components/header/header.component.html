@@ -1,3 +1,11 @@
 <header>
     <p>{{title$ | async}}</p>
+
+    <nav>
+        <ul>
+            @for(option of options; track $index){
+                <li><a [routerLink]="option.path" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">{{option.label}}</a></li>
+            }
+        </ul>
+    </nav>
 </header>
